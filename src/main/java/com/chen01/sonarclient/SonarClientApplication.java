@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DateproApplication {
+public class SonarClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DateproApplication.class, args);
+		SpringApplication.run(SonarClientApplication.class, args);
 	}
 
 }

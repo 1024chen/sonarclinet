@@ -1,0 +1,4 @@
+sonar:
+  url: http://localhost:9000/
+  username: admin
+  password: admin123
