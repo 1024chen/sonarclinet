@@ -1,6 +1,6 @@
 package com.chen01.sonarclient.config;
 
-import com.chen01.sonarclient.model.response.SystemRes;
+import com.chen01.sonarclient.model.response.SystemResponseBo;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,6 +22,6 @@ class RestTemplateConfigTest {
 
     @Test
     void status() {
-        System.out.println(Objects.requireNonNull(restTemplate.getForObject("/api/system/status", SystemRes.class)));
+        System.out.println(Objects.requireNonNull(restTemplate.getForObject("/api/system/status", SystemResponseBo.class)));
     }
 }
