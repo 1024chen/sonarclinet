@@ -1,8 +1,10 @@
 package com.chen01.sonarclient.service;
 
+import com.alibaba.excel.EasyExcel;
 import com.chen01.sonarclient.model.request.rules.RulesSearch;
 import com.chen01.sonarclient.model.request.rules.RulesShow;
 import com.chen01.sonarclient.model.response.rules.RulesSearchResponseBo;
+import com.chen01.sonarclient.model.response.rules.SignalRule;
 import com.chen01.sonarclient.util.HttpUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +31,10 @@ public class RuleService {
      * 搜索规则并转换为Excel
      * @return 是否转换完成
      */
-    public boolean searchRulesAndTransExcel(RulesSearch rulesSearch){
+    public void searchRulesAndTransExcel(RulesSearch rulesSearch,String fileFullPath){
         RulesSearchResponseBo rulesSearchResponseBo = searchRules(rulesSearch);
-        //转换为excel
-        return true;
+        EasyExcel.write(fileFullPath, SignalRule.class)
+                .sheet("Java规则清单")
+                .doWrite(rulesSearchResponseBo.getRules());
     }
 }

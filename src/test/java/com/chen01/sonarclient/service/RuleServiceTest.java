@@ -26,9 +26,19 @@ class RuleServiceTest {
     void searchRules(){
         RulesSearch rulesSearch = RulesSearch.builder()
                 .languages("java")
+                .ps("500")
                 .repositories("").build();
         RulesSearchResponseBo rulesSearchResponseBo = ruleService.searchRules(rulesSearch);
         System.out.println(rulesSearchResponseBo);
         Assertions.assertEquals(1,rulesSearchResponseBo.getP());
+    }
+
+    @Test
+    void searchRulesAndTransExcel(){
+        RulesSearch rulesSearch = RulesSearch.builder()
+                .languages("java")
+                .ps("500")
+                .repositories("").build();
+        ruleService.searchRulesAndTransExcel(rulesSearch,"./excel/Java规则清单.xlsx");
     }
 }
