@@ -1,6 +1,6 @@
 package com.chen01.sonarclient.config;
 
-import com.chen01.sonarclient.model.response.SystemResponseBo;
+import com.chen01.sonarclient.model.response.system.SystemResponseBo;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

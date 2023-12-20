@@ -1,4 +1,4 @@
-package com.chen01.sonarclient.model.response;
+package com.chen01.sonarclient.model.response.system;
 
 import lombok.Data;
 
