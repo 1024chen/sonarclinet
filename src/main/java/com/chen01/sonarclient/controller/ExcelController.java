@@ -22,4 +22,15 @@ public class ExcelController {
                 .sheet(sheetName)
                 .doWrite(rulesSearchResponseBo.getRules());
     }
+
+    /**
+     * 搜索所有Java规则并转换为excel
+     */
+    public void searchAllJavaRulesToExcel(String fileFullPath,String sheetName){
+        EasyExcel.write(fileFullPath, SignalRule.class)
+                .sheet(sheetName)
+                .doWrite(ruleService.searchAllRules(
+                        RulesSearch.builder().languages("java").build()
+                ).getRules());
+    }
 }

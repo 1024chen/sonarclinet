@@ -3,14 +3,15 @@ package com.chen01.sonarclient.model.response.rules;
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.alibaba.excel.converters.booleanconverter.BooleanStringConverter;
-import com.chen01.sonarclient.util.converter.BooleanToStringConverter;
 import lombok.Data;
 
 import java.util.List;
 
 @ExcelIgnoreUnannotated
 @Data
+@ColumnWidth(20)
 public class SignalRule {
 
     @ExcelProperty("规则键")
@@ -38,7 +39,7 @@ public class SignalRule {
     private List<String> sysTags;
 //    @ExcelProperty("语言")
     private String lang;
-    @ExcelProperty("语言名称")
+    @ExcelProperty("语言")
     private String langName;
 //    @ExcelProperty("参数列表")
     private List<Object> params;
@@ -52,13 +53,13 @@ public class SignalRule {
     private String defaultRemFnType;
 //    @ExcelProperty("defaultRemFnBaseEffort")
     private String defaultRemFnBaseEffort;
-    @ExcelProperty("remFnType")
+//    @ExcelProperty("remFnType")
     private String remFnType;
-    @ExcelProperty("remFnBaseEffort")
+    @ExcelProperty("影响时间")
     private String remFnBaseEffort;
 //    @ExcelProperty("remFnOverloaded")
     private boolean remFnOverloaded;
-    @ExcelProperty("范围")
+    @ExcelProperty("作用范围")
     private String scope;
     @ExcelProperty(value = "是否自定义规则",converter = BooleanStringConverter.class)
     private boolean isExternal;
@@ -71,6 +72,7 @@ public class SignalRule {
     private String updatedAt;
 //    @ExcelProperty("整洁代码属性")
     private String cleanCodeAttribute;
+    @ColumnWidth(20)
     @ExcelProperty("整洁代码属性")
     private String cleanCodeAttributeCategory;
 //    @ExcelProperty("影响")

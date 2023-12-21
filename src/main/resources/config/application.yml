@@ -5,3 +5,4 @@ sonar:
 file:
   location: ./excel/
   filename: 规则清单.xlsx
+  sheet-name: 规则清单
