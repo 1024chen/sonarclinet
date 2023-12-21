@@ -18,9 +18,10 @@ public class HttpUtil {
     @Resource
     private ObjectMapper objectMapper;
 
-    public Object createGetUrl(Object object,Class<?> cls, String uri) {
+    public Object getTheUriResponse(Object object, Class<?> cls, String uri) {
         Map<String, String> map = objectMapper.convertValue(object, Map.class);
         StringBuilder stringBuilder = new StringBuilder(uri);
+        stringBuilder.append("?");
         map.forEach((key, value) -> {
             if (StringUtils.isNotEmpty(value)) {
                 stringBuilder.append(key)

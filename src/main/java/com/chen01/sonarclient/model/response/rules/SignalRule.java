@@ -3,6 +3,7 @@ package com.chen01.sonarclient.model.response.rules;
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
+import com.alibaba.excel.converters.booleanconverter.BooleanStringConverter;
 import com.chen01.sonarclient.util.converter.BooleanToStringConverter;
 import lombok.Data;
 
@@ -59,7 +60,7 @@ public class SignalRule {
     private boolean remFnOverloaded;
     @ExcelProperty("范围")
     private String scope;
-    @ExcelProperty(value = "是否自定义规则",converter = BooleanToStringConverter.class)
+    @ExcelProperty(value = "是否自定义规则",converter = BooleanStringConverter.class)
     private boolean isExternal;
 //    @ExcelProperty("描述部分")
     private List<DescriptionSection> descriptionSections;
@@ -70,7 +71,7 @@ public class SignalRule {
     private String updatedAt;
 //    @ExcelProperty("整洁代码属性")
     private String cleanCodeAttribute;
-//    @ExcelProperty("整洁代码属性类别")
+    @ExcelProperty("整洁代码属性")
     private String cleanCodeAttributeCategory;
 //    @ExcelProperty("影响")
     private List<Impact> impacts;

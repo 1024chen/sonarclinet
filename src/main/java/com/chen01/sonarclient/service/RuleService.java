@@ -18,18 +18,17 @@ public class RuleService {
     private HttpUtil httpUtil;
 
     public String showRules(RulesShow rulesShow) {
-        String uri = "/api/rules/show?";
-        return (String) httpUtil.createGetUrl(rulesShow, String.class,uri);
+        String uri = "/api/rules/show";
+        return (String) httpUtil.getTheUriResponse(rulesShow, String.class,uri);
     }
 
     public RulesSearchResponseBo searchRules(RulesSearch rulesSearch) {
-        String uri = "/api/rules/search?";
-        return (RulesSearchResponseBo) httpUtil.createGetUrl(rulesSearch, RulesSearchResponseBo.class,uri);
+        String uri = "/api/rules/search";
+        return (RulesSearchResponseBo) httpUtil.getTheUriResponse(rulesSearch, RulesSearchResponseBo.class,uri);
     }
 
     /**
      * 搜索规则并转换为Excel
-     * @return 是否转换完成
      */
     public void searchRulesAndTransExcel(RulesSearch rulesSearch,String fileFullPath){
         RulesSearchResponseBo rulesSearchResponseBo = searchRules(rulesSearch);

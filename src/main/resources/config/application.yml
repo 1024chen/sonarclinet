@@ -2,3 +2,6 @@ sonar:
   url: http://localhost:9000/
   username: admin
   password: admin123
+file:
+  location: ./excel/
+  filename: 规则清单.xlsx

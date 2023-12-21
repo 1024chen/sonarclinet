@@ -14,7 +14,7 @@ public class LanguageService {
     private HttpUtil httpUtil;
 
     public LanguageListResponseBo listLanguages(LanguageList languageList){
-        String uri = "/api/languages/list?";
-        return (LanguageListResponseBo) httpUtil.createGetUrl(languageList, LanguageListResponseBo.class,uri);
+        String uri = "/api/languages/list";
+        return (LanguageListResponseBo) httpUtil.getTheUriResponse(languageList, LanguageListResponseBo.class,uri);
     }
 }

@@ -6,9 +6,8 @@ import com.chen01.sonarclient.model.response.rules.RulesSearchResponseBo;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class RuleServiceTest {
@@ -16,29 +15,37 @@ class RuleServiceTest {
     @Resource
     private RuleService ruleService;
 
+    @Value("${file.location}")
+    private String location;
+    @Value("${file.filename}")
+    private String fileName;
+
     @Test
     void showRules() {
-        RulesShow rulesShow = RulesShow.builder().actives("false").key("javascript:EmptyBlock").build();
-        System.out.println(ruleService.showRules(rulesShow));
+        RulesShow rulesShow = RulesShow.builder().actives("true").key("java:S1215").build();
+        String rule = ruleService.showRules(rulesShow);
+        Assertions.assertNotNull(rule);
+        System.out.println(rule);
     }
 
     @Test
-    void searchRules(){
+    void searchRules() {
         RulesSearch rulesSearch = RulesSearch.builder()
                 .languages("java")
                 .ps("500")
                 .repositories("").build();
         RulesSearchResponseBo rulesSearchResponseBo = ruleService.searchRules(rulesSearch);
         System.out.println(rulesSearchResponseBo);
-        Assertions.assertEquals(1,rulesSearchResponseBo.getP());
+        Assertions.assertEquals(1, rulesSearchResponseBo.getP());
     }
 
     @Test
-    void searchRulesAndTransExcel(){
+    void searchRulesAndTransExcel() {
         RulesSearch rulesSearch = RulesSearch.builder()
                 .languages("java")
                 .ps("500")
                 .repositories("").build();
-        ruleService.searchRulesAndTransExcel(rulesSearch,"./excel/Java规则清单.xlsx");
+        String fileFullPath = location + rulesSearch.getLanguages() + fileName;
+        ruleService.searchRulesAndTransExcel(rulesSearch, fileFullPath);
     }
 }
