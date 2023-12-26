@@ -5,7 +5,7 @@ import com.chen01.sonarclient.model.request.rules.RulesShow;
 import com.chen01.sonarclient.model.response.rules.Paging;
 import com.chen01.sonarclient.model.response.rules.RulesSearchResponseBo;
 import com.chen01.sonarclient.model.response.rules.SignalRule;
-import com.chen01.sonarclient.util.HttpUtil;
+import com.chen01.sonarclient.util.HttpRequestUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class RuleService {
 
     @Resource
-    private HttpUtil httpUtil;
+    private HttpRequestUtil httpRequestUtil;
 
     public int pageTotal(Paging paging) {
         return 1 + paging.getTotal() / paging.getPageSize();
@@ -26,12 +26,12 @@ public class RuleService {
 
     public String showRules(RulesShow rulesShow) {
         String uri = "/api/rules/show";
-        return (String) httpUtil.getTheUriResponse(rulesShow, String.class, uri);
+        return (String) httpRequestUtil.getTheSonarGetResponse(rulesShow, String.class, uri);
     }
 
     public RulesSearchResponseBo searchRules(RulesSearch rulesSearch) {
         String uri = "/api/rules/search";
-        return (RulesSearchResponseBo) httpUtil.getTheUriResponse(rulesSearch, RulesSearchResponseBo.class, uri);
+        return (RulesSearchResponseBo) httpRequestUtil.getTheSonarGetResponse(rulesSearch, RulesSearchResponseBo.class, uri);
     }
 
     public RulesSearchResponseBo searchAllRules(RulesSearch rulesSearch) {

@@ -2,11 +2,7 @@ package com.chen01.sonarclient.model.excel;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
-import com.alibaba.excel.converters.booleanconverter.BooleanStringConverter;
-import com.chen01.sonarclient.model.response.rules.DescriptionSection;
-import com.chen01.sonarclient.model.response.rules.Impact;
 import com.chen01.sonarclient.model.response.rules.SignalRule;
 import lombok.Data;
 

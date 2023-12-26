@@ -6,3 +6,12 @@ file:
   location: ./excel/
   filename: 规则清单.xlsx
   sheet-name: 规则清单
+translator:
+  url: https://openapi.youdao.com/api
+  params:
+    domain: computers
+    from: en
+    to: zh-CHS
+    signType: v3
+    strict: false
+    rejectFallback: false
