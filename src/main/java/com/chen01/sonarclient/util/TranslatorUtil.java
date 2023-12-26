@@ -1,12 +1,15 @@
 package com.chen01.sonarclient.util;
 
-import com.chen01.sonarclient.model.request.translator.TranslatorRequestBo;
+import com.chen01.sonarclient.model.request.translator.BatchTranslatorRequestBo;
+import com.chen01.sonarclient.model.request.translator.SignalTranslatorRequestBo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TranslatorUtil {
@@ -62,11 +65,11 @@ public class TranslatorUtil {
         }
     }
 
-    public TranslatorRequestBo generatorEnglishRequestModel(String sourceText) {
+    public SignalTranslatorRequestBo generatorSignalEnglishRequestModel(String sourceText) {
         long currentTimeMillis = System.currentTimeMillis();
         String salt = String.valueOf(currentTimeMillis);
         String curtailment = String.valueOf(currentTimeMillis / 1000);
-        return TranslatorRequestBo.builder()
+        return SignalTranslatorRequestBo.builder()
                 .q(sourceText)
                 .from(from)
                 .to(to)
@@ -79,5 +82,32 @@ public class TranslatorUtil {
                 .domain(domain)
                 .rejectFallback(rejectFallback)
                 .build();
+    }
+
+    public BatchTranslatorRequestBo generatorBatchEnglishRequestModel(List<String> sourceTextList) {
+        String splicingString = getSplicingString(sourceTextList);
+        long currentTimeMillis = System.currentTimeMillis();
+        String salt = String.valueOf(currentTimeMillis);
+        String curtailment = String.valueOf(currentTimeMillis / 1000);
+        return BatchTranslatorRequestBo.builder()
+                .q(sourceTextList)
+                .from(from)
+                .to(to)
+                .appKey(appKey)
+                .salt(salt)
+                .sign(generateSign(splicingString,salt,curtailment))
+                .signType(signType)
+                .curtime(curtailment)
+                .build();
+    }
+
+    private static String getSplicingString(List<String> sourceTextList) {
+        Optional<String> optionalSplicing =  sourceTextList.stream().reduce((sa, sb) -> sa + sb);
+        String splicingString = null;
+        if (optionalSplicing.isPresent()){
+            splicingString = optionalSplicing.get();
+        }
+        System.out.println(splicingString);
+        return splicingString;
     }
 }

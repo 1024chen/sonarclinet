@@ -72,7 +72,6 @@ public class SignalRule {
     private String updatedAt;
 //    @ExcelProperty("整洁代码属性")
     private String cleanCodeAttribute;
-    @ColumnWidth(20)
     @ExcelProperty("整洁代码属性")
     private String cleanCodeAttributeCategory;
 //    @ExcelProperty("影响")

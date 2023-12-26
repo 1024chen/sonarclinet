@@ -51,4 +51,24 @@ class ExcelControllerTest {
                 sheetName
         );
     }
+
+    @Test
+    void searchAndSignalTranslateToExcelByRules(){
+        RulesSearch rulesSearch = RulesSearch.builder().languages("java").build();
+        excelController.searchAndSignalTranslateToExcelByRules(
+                rulesSearch,
+                location + rulesSearch.getLanguages() + fileName,
+                sheetName
+        );
+    }
+
+    @Test
+    void searchAndBatchTranslateToExcelByRules(){
+        RulesSearch rulesSearch = RulesSearch.builder().languages("java").build();
+        excelController.searchAndBatchTranslateToExcelByRules(
+                rulesSearch,
+                location + rulesSearch.getLanguages() + fileName,
+                sheetName
+        );
+    }
 }

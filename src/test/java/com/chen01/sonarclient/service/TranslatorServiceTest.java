@@ -7,8 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class TranslatorServiceTest {
 
@@ -16,9 +14,16 @@ class TranslatorServiceTest {
     private TranslatorService translatorService;
 
     @Test
-    void getTransResult() {
+    void getSignalTransResult() {
         List<String> wordList = Arrays.asList("test","touch me","just kidding",
                 "I use the java language to develop programs");
-        System.out.println(translatorService.getTransResult(wordList.toString()));
+        System.out.println(translatorService.getSignalTransResult(wordList.toString()));
+    }
+
+    @Test
+    void getBatchTransResult(){
+        List<String> wordList = Arrays.asList("test","touch me","just kidding",
+                "I use the java language to develop programs");
+        System.out.println(translatorService.getBatchTransResult(wordList));
     }
 }

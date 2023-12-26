@@ -7,7 +7,8 @@ file:
   filename: 规则清单.xlsx
   sheet-name: 规则清单
 translator:
-  url: https://openapi.youdao.com/api
+  signalUrl: https://openapi.youdao.com/api
+  batchUrl: https://openapi.youdao.com/v2/api
   params:
     domain: computers
     from: en
