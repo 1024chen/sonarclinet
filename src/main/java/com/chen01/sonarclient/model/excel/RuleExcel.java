@@ -43,31 +43,31 @@ public class RuleExcel {
     private String lang;
     @ExcelProperty("语言")
     private String langName;
-    @ExcelProperty("参数列表")
+//    @ExcelProperty("参数列表")
     private String params;
-    @ExcelProperty("defaultDebtRemFnType")
+//    @ExcelProperty("defaultDebtRemFnType")
     private String defaultDebtRemFnType;
-    @ExcelProperty("debtRemFnType")
+//    @ExcelProperty("debtRemFnType")
     private String debtRemFnType;
     @ExcelProperty("类型")
     private String type;
-    @ExcelProperty("defaultRemFnType")
+//    @ExcelProperty("defaultRemFnType")
     private String defaultRemFnType;
-    @ExcelProperty("defaultRemFnBaseEffort")
+//    @ExcelProperty("defaultRemFnBaseEffort")
     private String defaultRemFnBaseEffort;
-    @ExcelProperty("remFnType")
+//    @ExcelProperty("remFnType")
     private String remFnType;
     @ExcelProperty("影响时间")
     private String remFnBaseEffort;
-    @ExcelProperty("remFnOverloaded")
+//    @ExcelProperty("remFnOverloaded")
     private String remFnOverloaded;
     @ExcelProperty("作用范围")
     private String scope;
-    @ExcelProperty(value = "是否扩展规则")
+//    @ExcelProperty(value = "是否扩展规则")
     private String isExternal;
-    @ExcelProperty("描述部分")
+//    @ExcelProperty("描述部分")
     private String descriptionSections;
-    @ExcelProperty("educationPrinciples")
+//    @ExcelProperty("educationPrinciples")
     private String educationPrinciples;
     @ExcelProperty("更新时间")
     private String updatedAt;

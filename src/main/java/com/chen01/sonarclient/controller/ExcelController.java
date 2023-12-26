@@ -30,9 +30,9 @@ public class ExcelController {
     /**
      * 搜索所有Java规则并转换为excel
      */
-    public void searchAllJavaRulesToExcel(String fileFullPath,String sheetName){
+    public void searchToExcelByRules(RulesSearch rulesSearch, String fileFullPath, String sheetName){
         List<RuleExcel> ruleExcelList = new ArrayList<>();
-        ruleService.searchAllRules(RulesSearch.builder().languages("java").build())
+        ruleService.searchAllRules(rulesSearch)
                 .getRules()
                 .forEach(a -> ruleExcelList.add(new RuleExcel(a)));
         EasyExcel.write(fileFullPath, RuleExcel.class)

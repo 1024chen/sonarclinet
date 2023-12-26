@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class ExcelControllerTest {
 
@@ -32,9 +30,23 @@ class ExcelControllerTest {
     }
 
     @Test
+    void searchToExcelByRules() {
+        RulesSearch rulesSearch = RulesSearch.builder()
+                .activation("true")
+                .languages("java")
+                .qprofile("AYyAyl_jyrjuJxKzWNBJ").build();
+        excelController.searchToExcelByRules(
+                rulesSearch,
+                location + rulesSearch.getLanguages() + fileName,
+                sheetName
+        );
+    }
+
+    @Test
     void searchAllJavaRulesToExcel() {
         RulesSearch rulesSearch = RulesSearch.builder().languages("java").build();
-        excelController.searchAllJavaRulesToExcel(
+        excelController.searchToExcelByRules(
+                rulesSearch,
                 location + rulesSearch.getLanguages() + fileName,
                 sheetName
         );
