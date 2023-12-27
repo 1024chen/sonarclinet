@@ -31,4 +31,8 @@ public class TranslatorService {
         return httpRequestUtil.postTheBatchTranslator(batchUrl,
                 translatorUtil.generatorBatchEnglishRequestModel(sourceTextList));
     }
+
+    public String translationSignalText(String sourceText){
+        return getSignalTransResult(sourceText).getTranslation().get(0);
+    }
 }
