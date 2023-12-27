@@ -2,25 +2,33 @@ package com.chen01.sonarclient.model.excel;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.chen01.sonarclient.model.response.rules.SignalRule;
 import lombok.Data;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @ExcelIgnoreUnannotated
 @Data
 @ColumnWidth(20)
 public class RuleExcel {
-
     @ExcelProperty("规则键")
     private String key;
     @ExcelProperty("所在库")
     private String repo;
     @ExcelProperty("规则名称")
     private String name;
+    @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
     @ExcelProperty("创建时间")
-    private String createdAt;
+    private Date createdAt;
+    @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
+    @ExcelProperty("更新时间")
+    private Date updatedAt;
     @ExcelProperty("HTML描述")
     private String htmlDesc;
     @ExcelProperty("markdown描述")
@@ -39,34 +47,32 @@ public class RuleExcel {
     private String lang;
     @ExcelProperty("语言")
     private String langName;
-//    @ExcelProperty("参数列表")
+    //    @ExcelProperty("参数列表")
     private String params;
-//    @ExcelProperty("defaultDebtRemFnType")
+    //    @ExcelProperty("defaultDebtRemFnType")
     private String defaultDebtRemFnType;
-//    @ExcelProperty("debtRemFnType")
+    //    @ExcelProperty("debtRemFnType")
     private String debtRemFnType;
     @ExcelProperty("类型")
     private String type;
-//    @ExcelProperty("defaultRemFnType")
+    //    @ExcelProperty("defaultRemFnType")
     private String defaultRemFnType;
-//    @ExcelProperty("defaultRemFnBaseEffort")
+    //    @ExcelProperty("defaultRemFnBaseEffort")
     private String defaultRemFnBaseEffort;
-//    @ExcelProperty("remFnType")
+    //    @ExcelProperty("remFnType")
     private String remFnType;
     @ExcelProperty("影响时间")
     private String remFnBaseEffort;
-//    @ExcelProperty("remFnOverloaded")
+    //    @ExcelProperty("remFnOverloaded")
     private String remFnOverloaded;
     @ExcelProperty("作用范围")
     private String scope;
-//    @ExcelProperty(value = "是否扩展规则")
+    //    @ExcelProperty(value = "是否扩展规则")
     private String isExternal;
-//    @ExcelProperty("描述部分")
+    //    @ExcelProperty("描述部分")
     private String descriptionSections;
-//    @ExcelProperty("educationPrinciples")
+    //    @ExcelProperty("educationPrinciples")
     private String educationPrinciples;
-    @ExcelProperty("更新时间")
-    private String updatedAt;
     @ExcelProperty("整洁代码标签")
     private String cleanCodeAttribute;
     @ExcelProperty("整洁代码属性")
@@ -80,7 +86,15 @@ public class RuleExcel {
         key = signalRule.getKey();
         repo = signalRule.getRepo();
         name = signalRule.getName();
-        createdAt = signalRule.getCreatedAt();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            createdAt = dateFormat.parse(
+                    signalRule.getCreatedAt().substring(0, 10)
+                            + " "
+                            + signalRule.getCreatedAt().substring(11, 19));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         htmlDesc = signalRule.getHtmlDesc();
         mdDesc = signalRule.getMdDesc();
         severity = signalRule.getSeverity();
@@ -108,7 +122,14 @@ public class RuleExcel {
         isExternal = String.valueOf(signalRule.isExternal());
         descriptionSections = signalRule.getDescriptionSections().toString();
         educationPrinciples = signalRule.getEducationPrinciples().toString();
-        updatedAt = signalRule.getUpdatedAt();
+        try {
+            updatedAt = dateFormat.parse(
+                    signalRule.getUpdatedAt().substring(0, 10)
+                    + " "
+                    + signalRule.getUpdatedAt().substring(11, 19));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         cleanCodeAttribute = signalRule.getCleanCodeAttribute();
         cleanCodeAttributeCategory = signalRule.getCleanCodeAttributeCategory();
         StringBuilder softwareBuilder = new StringBuilder();
